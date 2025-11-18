@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Viewer Banner</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+      /* AJOUT : Police pour le badge, copiée de panel.html */
+      @import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
+
+      body {
+        margin: 0;
+        background: transparent; /* fond transparent */
+        color: #fff;
+      }
+      #app {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+      }
+      .banner {
+        position: absolute;
+        bottom: 15px; /* en bas */
+        right: 15px; /* à gauche */
+        display: flex;
+        align-items: center;
+        background: rgba(255, 191, 231, 0.8); /* léger fond semi-transparent */
+        padding: 5px;
+        border-radius: 8px;
+        opacity: 0;
+        transform: scale(0.95);
+        cursor: pointer;
+        backdrop-filter: blur(2px);
+        font-family: "Inter", sans-serif;
+        font-weight: 900;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: box-shadow 0.3s ease;
+      }
+      .banner:hover {
+        box-shadow: 0 0 15px rgba(255, 191, 231, 1);
+      }
+
+      /* MODIFIÉ : Sélecteur pour cibler l'image dans son conteneur */
+      .banner .img-container img {
+        height: 80px; /* image plus petite */
+        width: auto;
+        border-radius: 6px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: block; /* Assure un bon alignement */
+      }
+
+      /* MODIFIÉ : Sélecteur pour le hover */
+      .banner:hover .img-container img {
+        transform: scale(1.05);
+        box-shadow: 0 0 12px rgba(233, 30, 99, 0.8);
+      }
+      .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 10px;
+      }
+      .info h3 {
+        margin: 0;
+        font-size: 14px;
+        color: #fff;
+        text-decoration: none;
+        max-width: 150px;
+        /* MODIFIÉ : Suppression de nowrap/ellipsis pour permettre le retour à la ligne */
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        white-space: normal;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      }
+      .info p {
+        margin: 0;
+        font-size: 12px;
+        font-weight: 800;
+        color: #f49dd8;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      }
+      .pubCommande {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 700;
+        color: #ffffff;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      }
+      /* AJOUT : Conteneur pour l'image (pour positionner le badge) */
+      .banner .img-container {
+        position: relative;
+        display: block;
+        line-height: 0; /* Empêche les espaces superflus */
+      }
+
+      /* AJOUT : Styles du badge promo (copiés de panel.html) */
+      .badge-promo {
+        position: absolute;
+        top: -10px; /* Ajusté pour la petite bannière */
+        left: -10px; /* Ajusté pour la petite bannière */
+        background: #e91e63;
+        color: #fff;
+        font-size: 11px; /* Ajusté pour la petite bannière */
+        padding: 10px 8px;
+        border-radius: 6px;
+        font-family: "Inter", sans-serif;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        animation: promoPulse 1.5s infinite;
+        z-index: 2;
+      }
+
+      /* AJOUT : Animation du badge (copiée de panel.html) */
+      @keyframes promoPulse {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.12);
+          opacity: 0.9;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      a:hover,
+      a:focus {
+        text-decoration: underline;
+        color: #f49dd8;
+        text-decoration-thickness: 2px; /* épaisseur du soulignement */
+        text-underline-offset: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
+    <script src="gsap.min.js"></script>
+    <script src="video_component.js"></script>
+  </body>
+</html>
